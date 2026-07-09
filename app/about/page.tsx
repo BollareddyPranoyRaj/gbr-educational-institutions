@@ -1,0 +1,98 @@
+import React from 'react';
+import { History, Target, Eye, Award } from 'lucide-react';
+
+export const metadata = {
+  title: 'About GBR Institutions | Legacy Since 1979',
+  description: 'Learn about the history, vision, and mission of GBR Educational Institutions in Anaparthi.',
+};
+
+export default function AboutPage() {
+  return (
+    <main className="min-h-screen bg-[#F8F9FA] pb-16">
+      {/* Hero Section */}
+      <div className="bg-[#0B2046] text-white py-20 px-6 md:px-12 text-center border-b-[6px] border-amber-500">
+        <h1 className="text-4xl md:text-5xl font-bold font-serif max-w-4xl mx-auto leading-tight">
+          A Legacy of Educational Excellence
+        </h1>
+        <p className="text-white/80 mt-4 text-lg max-w-2xl mx-auto font-light">
+          Empowering the youth of Anaparthi and beyond since 1979 through uncompromising academic standards and holistic development.
+        </p>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
+        
+        {/* Vision & Mission Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400 opacity-5 rounded-bl-full"></div>
+            <Eye className="text-amber-500 mb-6" size={40} />
+            <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-4">Our Vision</h2>
+            <p className="text-gray-600 leading-relaxed text-lg">
+              To be a premier educational hub that nurtures intellectual curiosity, moral integrity, and professional competence, transforming rural and semi-urban students into global leaders.
+            </p>
+          </div>
+
+          <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400 opacity-5 rounded-bl-full"></div>
+            <Target className="text-blue-500 mb-6" size={40} />
+            <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-4">Our Mission</h2>
+            <p className="text-gray-600 leading-relaxed text-lg">
+              To provide accessible, high-quality education across all levels—from early childhood to postgraduate studies—while instilling discipline, cultural values, and a lifelong love for learning.
+            </p>
+          </div>
+        </div>
+
+        {/* History / The Trust Section */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col md:flex-row mb-20">
+          <div className="md:w-1/2 bg-gray-50 p-12 flex flex-col justify-center border-r border-gray-100">
+            <History className="text-[#0B2046] mb-6" size={40} />
+            <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-4">The GBR Trust</h2>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              Established in 1979, the GBR Educational Trust was founded with a singular, noble objective: to bring world-class educational infrastructure to the Godavari districts. 
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              What started as a single school has blossomed into a comprehensive multi-institution campus. Today, we manage state-of-the-art English Medium Schools, a competitive Junior College, a comprehensive Degree & PG College, and an NCTE-approved College of Education.
+            </p>
+          </div>
+          <div className="md:w-1/2 p-12 flex flex-col justify-center">
+            <h3 className="text-2xl font-bold text-gray-900 font-serif mb-6">Milestones</h3>
+            <ul className="space-y-6">
+              <li className="flex gap-4">
+                <span className="font-bold text-amber-500 text-xl w-16 shrink-0">1979</span>
+                <div>
+                  <h4 className="font-bold text-gray-900">Foundation</h4>
+                  <p className="text-sm text-gray-500">The trust is established and the first school opens its doors.</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="font-bold text-amber-500 text-xl w-16 shrink-0">1995</span>
+                <div>
+                  <h4 className="font-bold text-gray-900">Higher Education Expansion</h4>
+                  <p className="text-sm text-gray-500">Inauguration of the Degree and Junior college blocks.</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="font-bold text-amber-500 text-xl w-16 shrink-0">2010</span>
+                <div>
+                  <h4 className="font-bold text-gray-900">Professional Courses</h4>
+                  <p className="text-sm text-gray-500">Introduction of PG courses (MCA/MBA) and B.Ed programs.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Leadership / Founder Message */}
+        <div className="text-center max-w-3xl mx-auto">
+          <Award className="mx-auto text-amber-500 mb-6" size={48} />
+          <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-6">Leadership Message</h2>
+          <blockquote className="text-xl text-gray-700 italic leading-relaxed mb-6">
+            "Education is not merely about accumulating facts; it is about building character. At GBR, we don't just prepare students for exams; we prepare them for life. We are committed to maintaining a campus where tradition meets modern innovation."
+          </blockquote>
+          <p className="font-bold text-gray-900 uppercase tracking-widest text-sm">— Management Committee, GBR Institutions</p>
+        </div>
+
+      </div>
+    </main>
+  );
+}
