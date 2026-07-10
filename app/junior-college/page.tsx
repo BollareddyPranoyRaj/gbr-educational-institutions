@@ -1,117 +1,194 @@
-// app/junior-college/page.tsx
 import React from 'react';
-import { Microscope, Calculator, Landmark, Target, Award, Beaker } from 'lucide-react';
+import { Award, Star, Quote, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
-  title: 'GBR Junior College | Intermediate Education',
-  description: 'Top-tier Intermediate education in MPC, BiPC, and CEC streams with integrated competitive coaching for EAMCET, NEET, and JEE.',
+  title: 'Junior College | GBR Educational Institutions',
+  description: 'Premium Intermediate education with integrated competitive coaching.',
 };
 
 export default function JuniorCollegePage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FA] pb-16">
-      <div className="bg-[#0B2046] text-white py-20 px-6 md:px-12 text-center border-b-[6px] border-amber-500">
-        <h1 className="text-4xl md:text-5xl font-bold font-serif max-w-4xl mx-auto leading-tight">
-          GBR Junior College
-        </h1>
-        <p className="text-white/80 mt-4 text-lg max-w-2xl mx-auto font-light">
-          Laying the strongest foundation for higher education and professional success through rigorous Intermediate streams.
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#0B2046] font-serif">Academic Streams Offered</h2>
-          <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
-            Choose your specialized path. We provide intensive curriculum delivery combined with integrated coaching for state and national level entrance examinations.
+    <main className="min-h-screen bg-white pb-20">
+      {/* 1. Cinematic Hero Section */}
+      <div className="bg-[#0B2046] text-white py-24 px-6 md:px-12 text-center border-b-[6px] border-amber-500 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold font-serif max-w-4xl mx-auto leading-tight">
+            GBR Junior College
+          </h1>
+          <p className="text-amber-400 mt-4 text-xl font-medium tracking-wide uppercase">
+            MPC • BiPC • CEC
+          </p>
+          <p className="text-white/80 mt-4 text-lg max-w-2xl mx-auto font-light">
+            Empowering students with integrated coaching for JEE, NEET, and EAPCET to secure top university placements.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition group">
-            <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
-              <Calculator size={28} />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 font-serif mb-2">M.P.C</h3>
-            <p className="text-sm text-gray-500 font-semibold mb-4">Mathematics, Physics, Chemistry</p>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              The premier choice for aspiring engineers and architects. Includes rigorous analytical training and advanced problem-solving techniques.
-            </p>
-            <div className="bg-gray-50 p-3 rounded text-xs text-gray-700 font-medium">
-              Integrated Coaching: <span className="text-[#0B2046] font-bold">JEE (Mains) & AP EAPCET</span>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition group">
-            <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
-              <Microscope size={28} />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 font-serif mb-2">Bi.P.C</h3>
-            <p className="text-sm text-gray-500 font-semibold mb-4">Biology, Physics, Chemistry</p>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              Tailored for future medical professionals, agricultural experts, and biotechnologists. Features extensive practical laboratory sessions.
-            </p>
-            <div className="bg-gray-50 p-3 rounded text-xs text-gray-700 font-medium">
-              Integrated Coaching: <span className="text-[#0B2046] font-bold">NEET & AP EAPCET</span>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition group">
-            <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition">
-              <Landmark size={28} />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 font-serif mb-2">C.E.C</h3>
-            <p className="text-sm text-gray-500 font-semibold mb-4">Civics, Economics, Commerce</p>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              Designed for students aiming for careers in chartered accountancy, business management, law, and civil services.
-            </p>
-            <div className="bg-gray-50 p-3 rounded text-xs text-gray-700 font-medium">
-              Pathway Focus: <span className="text-[#0B2046] font-bold">CA Foundation & UG Commerce</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-20 bg-white p-8 md:p-12 rounded-2xl border border-gray-100 shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400 opacity-5 rounded-bl-full pointer-events-none"></div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
-            <div>
-              <h3 className="text-3xl font-bold text-[#0B2046] font-serif mb-4">The GBR Advantage</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Our intermediate program is strictly structured to minimize distractions and maximize academic output. We bridge the gap between board examinations and highly competitive entrance tests.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <Beaker className="text-amber-500 shrink-0 mt-1" size={20} />
-                  <div>
-                    <span className="block font-semibold text-gray-900">Advanced Laboratories</span>
-                    <span className="text-sm text-gray-500">Fully equipped Physics, Chemistry, and Botany/Zoology labs for hands-on practical experience.</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Target className="text-amber-500 shrink-0 mt-1" size={20} />
-                  <div>
-                    <span className="block font-semibold text-gray-900">Weekly Assessment Cycle</span>
-                    <span className="text-sm text-gray-500">Continuous evaluation through weekend slip tests and grand tests modeled on final exam patterns.</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Award className="text-amber-500 shrink-0 mt-1" size={20} />
-                  <div>
-                    <span className="block font-semibold text-gray-900">Proven Track Record</span>
-                    <span className="text-sm text-gray-500">Decades of consistent state-level ranks and high distinction pass percentages.</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-gray-50 h-full min-h-[300px] rounded-xl border border-gray-200 flex items-center justify-center p-6 text-center">
-               <div className="text-gray-400 font-medium">
-                 [Image Placeholder: Junior College Students in Chemistry Lab]
-               </div>
-            </div>
-          </div>
-        </div>
       </div>
+
+      {/* 2. The Local Leader: Principal's Message */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-20">
+        <div className="bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100 shadow-lg flex flex-col md:flex-row gap-12 items-center">
+          
+          {/* Principal's Photo */}
+          <div className="w-full md:w-1/3 flex flex-col items-center text-center shrink-0">
+            <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-amber-500 shadow-xl mb-6 bg-gray-200">
+              {/* Replace src with actual Principal photo */}
+              <img 
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Junior College Principal" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h3 className="text-2xl font-bold text-[#0B2046] font-serif">Dr. K. Srinivasa Rao</h3>
+            <p className="text-amber-600 font-semibold mt-1">Principal, Junior College</p>
+            <p className="text-gray-500 text-sm mt-2">M.Sc., Ph.D. with 25+ years of academic excellence.</p>
+          </div>
+
+          {/* Message Content */}
+          <div className="w-full md:w-2/3 relative">
+            <Quote className="absolute -top-6 -left-6 text-amber-200 opacity-50" size={80} />
+            <div className="relative z-10">
+              <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-6">A Commitment to Excellence</h2>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                <p>
+                  At GBR Junior College, we do not just prepare students for board exams; we prepare them for the most competitive entrances in the country. Our integrated coaching methodology for JEE, NEET, and EAPCET ensures that our students are always one step ahead.
+                </p>
+                <p>
+                  With state-of-the-art laboratories, a rigorous testing schedule, and a faculty of proven experts, we have consistently produced state-topping ranks. We look forward to welcoming you to a tradition of uncompromised academic rigor and success.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. The Wall of Excellence (JEE / EAPCET Highlights) */}
+      <section className="bg-[#0B2046] py-20 px-6 md:px-12 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-serif text-white mb-4">The Wall of Excellence</h2>
+            <p className="text-amber-400 text-lg">Celebrating our top achievers from the recent academic year.</p>
+          </div>
+
+          {/* Highlight Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Ranker 1 */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:-translate-y-2 transition duration-300">
+              <div className="w-24 h-24 mx-auto rounded-full bg-white mb-4 overflow-hidden border-2 border-amber-400">
+                 <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Student" className="w-full h-full object-cover" />
+              </div>
+              <h4 className="font-bold text-xl font-serif">Rahul Varma</h4>
+              <p className="text-amber-400 font-semibold mb-3">JEE Advanced Rank: 142</p>
+              <div className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm">
+                <Award size={16} /> Secured seat in IIT Madras
+              </div>
+            </div>
+
+            {/* Ranker 2 */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:-translate-y-2 transition duration-300 scale-105 shadow-2xl">
+              <div className="w-24 h-24 mx-auto rounded-full bg-white mb-4 overflow-hidden border-2 border-amber-400">
+                 <img src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Student" className="w-full h-full object-cover" />
+              </div>
+              <h4 className="font-bold text-xl font-serif">Priya Reddy</h4>
+              <p className="text-amber-400 font-semibold mb-3">AP EAPCET Rank: 12</p>
+              <div className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm">
+                <Star size={16} /> Top Medical Category
+              </div>
+            </div>
+
+            {/* Ranker 3 */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center hover:-translate-y-2 transition duration-300">
+              <div className="w-24 h-24 mx-auto rounded-full bg-white mb-4 overflow-hidden border-2 border-amber-400">
+                 <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Student" className="w-full h-full object-cover" />
+              </div>
+              <h4 className="font-bold text-xl font-serif">K. Srinivas</h4>
+              <p className="text-amber-400 font-semibold mb-3">IPE Board Marks: 992/1000</p>
+              <div className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm">
+                <Award size={16} /> District First
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      {/* 4. Campus Life & Infrastructure (Cinematic Bento Grid) */}
+      <section className="py-24 px-6 md:px-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold font-serif text-[#0B2046] mb-4">Life at GBR</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              An environment engineered for focus, growth, and holistic development.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-[800px] md:h-[600px]">
+            
+            {/* Smart Classrooms (Large Tile) */}
+            <div className="relative group overflow-hidden rounded-2xl md:col-span-2 md:row-span-2 shadow-sm">
+              <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Classroom" className="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2046]/90 via-[#0B2046]/40 to-transparent opacity-80 group-hover:opacity-100 transition duration-500" />
+              <div className="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                <h3 className="text-2xl font-bold text-white font-serif mb-2">Smart Classrooms</h3>
+                <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                  Interactive, tech-enabled learning environments designed to foster focus and drive our excellent academic results.
+                </p>
+              </div>
+            </div>
+
+            {/* Study Hours (Wide Tile) */}
+            <div className="relative group overflow-hidden rounded-2xl md:col-span-2 shadow-sm">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Study Hours" className="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2046]/90 via-[#0B2046]/20 to-transparent opacity-80 group-hover:opacity-100 transition duration-500" />
+              <div className="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                <h3 className="text-xl font-bold text-white font-serif mb-1">Intensive Coaching</h3>
+                <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100 line-clamp-2">
+                  Dedicated JEE & NEET preparation hours with one-on-one expert faculty support.
+                </p>
+              </div>
+            </div>
+
+            {/* Corridors (Small Tile) */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-sm">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corridor" className="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2046]/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition duration-500" />
+              <div className="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                <h3 className="text-lg font-bold text-white font-serif mb-1">Vibrant Campus</h3>
+                <p className="text-white/80 text-xs opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                  Expansive spaces for peer interaction and natural ventilation.
+                </p>
+              </div>
+            </div>
+
+            {/* Mentorship (Small Tile) */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-sm">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mentorship" className="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B2046]/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition duration-500" />
+              <div className="absolute bottom-0 left-0 p-5 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                <h3 className="text-lg font-bold text-white font-serif mb-1">Guided Mentorship</h3>
+                <p className="text-white/80 text-xs opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                  Open-door leadership and personal academic guidance.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="max-w-4xl mx-auto text-center py-20 px-6">
+        <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-6">Ready to secure your future?</h2>
+        <Link href="/admissions" className="inline-flex items-center gap-2 bg-amber-500 text-[#0B2046] px-8 py-4 rounded-lg font-bold text-lg hover:bg-amber-400 transition shadow-lg">
+          Apply for Junior College <ChevronRight size={20} />
+        </Link>
+      </section>
+
     </main>
   );
 }
