@@ -1,103 +1,174 @@
-// app/admissions/page.tsx
 import React from 'react';
-import { Phone, Mail, MapPin, CheckCircle2, FileText } from 'lucide-react';
-
-const admissionSteps = [
-  { step: '01', title: 'Obtain Application', desc: 'Collect the physical application form from the GBR Campus Administrative Office in Anaparthi.' },
-  { step: '02', title: 'Submit Documentation', desc: 'Submit the filled form along with required academic transcripts, transfer certificates (TC), and passport photos.' },
-  { step: '03', title: 'Verification & Interview', desc: 'Attend the document verification session. School and Intermediate streams may require a brief interaction/interview.' },
-  { step: '04', title: 'Seat Allotment', desc: 'Once verified, secure your seat allocation by confirming eligibility under respective state board or university counseling guidelines (APICET/APEDCET).' }
-];
+import { Phone, Mail, MapPin, Send, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const metadata = {
-  title: 'Admissions Guidelines 2026-2027 | GBR Institutions',
-  description: 'Step-by-step admission procedure, required documents, and contact details for GBR Schools, Junior College, Degree, PG, and Teacher Education.',
+  title: 'Admissions | GBR Educational Institutions',
+  description: 'Apply for admissions at GBR Institutions for the academic year 2026-2027.',
 };
 
 export default function AdmissionsPage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FA] py-16 px-6 md:px-12">
-      <div className="max-w-5xl mx-auto">
-        
-        {/* Page Header */}
-        <div className="border-b border-gray-200 pb-6 mb-12">
-          <h1 className="text-[#0B2046] text-4xl font-bold font-serif">Admission Guidelines</h1>
-          <p className="text-gray-600 mt-2 text-lg">Secure your future. Follow our streamlined offline admission workflow.</p>
-        </div>
+    <main className="min-h-screen bg-[#F8F9FA] pb-20">
+      {/* Hero Section */}
+      <div className="bg-[#0B2046] text-white py-20 px-6 md:px-12 text-center border-b-[6px] border-amber-500">
+        <h1 className="text-4xl md:text-5xl font-bold font-serif max-w-4xl mx-auto leading-tight">
+          Begin Your Journey With Us
+        </h1>
+        <p className="text-white/80 mt-4 text-lg max-w-2xl mx-auto font-light">
+          Admissions are now open for the 2026-2027 academic year across all GBR campuses.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
+        <div className="flex flex-col lg:flex-row gap-12">
           
-          {/* Left/Center: Steps Grid */}
-          <div className="lg:col-span-2 space-y-6">
-            <h2 className="text-[#0B2046] text-2xl font-bold font-serif mb-4 flex items-center gap-2">
-              <FileText className="text-amber-500" />
-              The Admission Process
-            </h2>
+          {/* Left Column: Info & Process */}
+          <div className="w-full lg:w-5/12 space-y-12">
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {admissionSteps.map((step, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden">
-                  <span className="absolute top-2 right-4 text-4xl font-black text-gray-100 select-none">
-                    {step.step}
-                  </span>
-                  <h3 className="text-lg font-bold text-gray-900 mt-2 flex items-center gap-2">
-                    <CheckCircle2 size={18} className="text-emerald-600" />
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm mt-2 leading-relaxed">{step.desc}</p>
+            {/* Contact Details */}
+            <div>
+              <h2 className="text-2xl font-bold text-[#0B2046] font-serif mb-6">Admissions Office</h2>
+              <div className="space-y-4 text-gray-600">
+                <div className="flex items-start gap-4">
+                  <MapPin className="text-amber-500 shrink-0 mt-1" size={24} />
+                  <p>GBR Campus, Main Road, <br />Anaparthi, East Godavari, AP - 533342</p>
                 </div>
-              ))}
+                <div className="flex items-center gap-4">
+                  <Phone className="text-amber-500 shrink-0" size={24} />
+                  <p>+91 8857 22xxxx / +91 9848x xxxxx</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Mail className="text-amber-500 shrink-0" size={24} />
+                  <p>admissions@gbr.edu.in</p>
+                </div>
+              </div>
             </div>
 
-            {/* Required Documents Section */}
-            <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm mt-8">
-              <h3 className="text-xl font-bold text-[#0B2046] font-serif mb-4">Mandatory Documents Checklist</h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
-                <li className="flex items-center gap-2">✔ SSC / 10th Class Marks Memo</li>
-                <li className="flex items-center gap-2">✔ Intermediate Marks Memo (For Degree/Ed)</li>
-                <li className="flex items-center gap-2">✔ Degree Consolidated Marks Memo (For PG/B.Ed)</li>
-                <li className="flex items-center gap-2">✔ Transfer Certificate (TC) & Study Certificates</li>
-                <li className="flex items-center gap-2">✔ APICET / APEDCET Rank Card (If Applicable)</li>
-                <li className="flex items-center gap-2">✔ 4 Recent Passport Size Photographs</li>
-              </ul>
+            {/* Admission Process */}
+            <div>
+              <h2 className="text-2xl font-bold text-[#0B2046] font-serif mb-6">How to Apply</h2>
+              <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+                
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-amber-100 text-amber-600 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                    1
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-white shadow-sm">
+                    <h3 className="font-bold text-[#0B2046]">Submit Enquiry</h3>
+                    <p className="text-sm text-gray-500 mt-1">Fill out the digital form with your basic details and program of interest.</p>
+                  </div>
+                </div>
+
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-amber-100 text-amber-600 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                    2
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-white shadow-sm">
+                    <h3 className="font-bold text-[#0B2046]">Campus Visit</h3>
+                    <p className="text-sm text-gray-500 mt-1">Our counselors will contact you to schedule a campus tour and interaction.</p>
+                  </div>
+                </div>
+
+                <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-amber-100 text-amber-600 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                    3
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-white shadow-sm">
+                    <h3 className="font-bold text-[#0B2046]">Enrollment</h3>
+                    <p className="text-sm text-gray-500 mt-1">Submit required documents and fee to secure your seat for the academic year.</p>
+                  </div>
+                </div>
+
+              </div>
             </div>
+
           </div>
 
-          {/* Right Sidebar: Administrative Office Contact */}
-          <div className="bg-[#0B2046] text-white p-8 rounded-xl shadow-lg space-y-6 lg:sticky lg:top-24">
-            <div>
-              <h3 className="text-xl font-bold font-serif text-amber-400">Admissions Helpdesk</h3>
-              <p className="text-white/80 text-sm mt-1">Reach out directly to our administrative block for seat availability and application processing.</p>
-            </div>
-
-            <div className="space-y-4 border-t border-white/10 pt-4 text-sm">
-              <div className="flex items-start gap-3">
-                <MapPin className="text-amber-400 shrink-0 mt-1" size={18} />
-                <div>
-                  <span className="block font-semibold">Central Admin Office</span>
-                  <span className="text-white/70">GBR Campus, Main Road, Anaparthi, East Godavari, AP - 533342</span>
+          {/* Right Column: Application Form */}
+          <div className="w-full lg:w-7/12">
+            <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#0B2046] font-serif mb-2">Online Enquiry Form</h2>
+              <p className="text-gray-500 mb-8 text-sm">Fill out the form below and our admissions team will get back to you within 24 hours.</p>
+              
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Student&apos;s Full Name *</label>
+                    <input 
+                      type="text" 
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white"
+                      placeholder="Enter student name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Parent/Guardian Name *</label>
+                    <input 
+                      type="text" 
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white"
+                      placeholder="Enter parent name"
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-3">
-                <Phone className="text-amber-400 shrink-0" size={18} />
-                <div>
-                  <span className="block font-semibold">Phone Networks</span>
-                  <span className="text-white/70">+91 8857 22xxxx, 23xxxx</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                    <input 
+                      type="tel" 
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white"
+                      placeholder="+91"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white"
+                      placeholder="your@email.com"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-3">
-                <Mail className="text-amber-400 shrink-0" size={18} />
                 <div>
-                  <span className="block font-semibold">Email Directory</span>
-                  <span className="text-white/70">admissions@gbr.edu.in</span>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Program of Interest *</label>
+                  <select className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white appearance-none" required>
+                    <option value="" disabled selected>Select a program...</option>
+                    <option value="school-primary">GBR Schools (Primary)</option>
+                    <option value="school-high">GBR Schools (High School)</option>
+                    <option value="inter-mpc">Junior College (MPC)</option>
+                    <option value="inter-bipc">Junior College (BiPC)</option>
+                    <option value="inter-cec">Junior College (CEC)</option>
+                    <option value="degree">Degree College (B.Sc / B.Com / B.A)</option>
+                    <option value="pg">PG College (MBA / MCA)</option>
+                    <option value="bed">College of Education (B.Ed / D.Ed)</option>
+                    <option value="nursing">Nursing College</option>
+                  </select>
                 </div>
-              </div>
-            </div>
 
-            <div className="bg-white/5 p-4 rounded-lg border border-white/10 text-xs text-center text-white/80">
-              Office Hours: Monday - Saturday <br /> 09:00 AM to 05:00 PM
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Any specific questions?</label>
+                  <textarea 
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white resize-none"
+                    placeholder="Tell us about your educational background or requirements..."
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="w-full bg-[#0B2046] text-white py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                >
+                  <Send size={20} />
+                  Submit Enquiry
+                </button>
+                
+                <p className="text-xs text-gray-400 text-center mt-4">
+                  By submitting this form, you agree to allow GBR Institutions to contact you regarding admissions.
+                </p>
+              </form>
             </div>
           </div>
 
