@@ -134,8 +134,12 @@ export default function AdmissionsPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Program of Interest *</label>
-                  <select className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white appearance-none" required>
-                    <option value="" disabled selected>Select a program...</option>
+                  <select 
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition bg-gray-50 focus:bg-white appearance-none" 
+                    defaultValue="" 
+                    required
+                  >
+                    <option value="" disabled>Select a program...</option>
                     <option value="school-primary">GBR Schools (Primary)</option>
                     <option value="school-high">GBR Schools (High School)</option>
                     <option value="inter-mpc">Junior College (MPC)</option>
