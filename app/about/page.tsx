@@ -1,12 +1,39 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { History, Target, Eye, Award, Users } from 'lucide-react';
 
-export const metadata = {
-  title: 'About GBR Institutions | Legacy Since 1979',
-  description: 'Learn about the history, vision, and mission of GBR Educational Institutions in Anaparthi.',
-};
+// NOTE: Metadata must be moved to a separate layout.tsx or server component when using 'use client'
+// export const metadata = {
+//   title: 'About GBR Institutions | Legacy Since 1979',
+//   description: 'Learn about the history, vision, and mission of GBR Educational Institutions in Anaparthi.',
+// };
+
+const leadershipMessages = [
+  {
+    quote: "Education is not merely about accumulating facts; it is about building character. At GBR, we don't just prepare students for exams; we prepare them for life. We are committed to maintaining a campus where tradition meets modern innovation.",
+    author: "Management Committee, GBR Institutions"
+  },
+  {
+    quote: "Our ultimate goal has always been to bring accessible, world-class educational infrastructure to the rural and semi-urban students, transforming them into global leaders of tomorrow.",
+    author: "Late Sri Goluguri Bapi Raju Reddy"
+  },
+  {
+    quote: "We continuously adapt to the modern educational landscape while keeping our roots firmly grounded in discipline, cultural values, and uncompromising academic standards.",
+    author: "Sri Tetali Adi Reddy (Kondababu)"
+  }
+];
 
 export default function AboutPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % leadershipMessages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#F8F9FA] pb-16">
       {/* Hero Section */}
@@ -56,12 +83,9 @@ export default function AboutPage() {
             
             {/* 1. Founder (Photo Left) */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition">
-              {/* Photo Block (Square) */}
               <div className="w-full md:w-1/3 aspect-square bg-amber-50 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-r border-gray-100">
-                {/* NOTE: Replace the <span> below with an <img> tag when you have real photos */}
                 <span className="text-8xl font-serif font-bold text-amber-200">G</span>
               </div>
-              {/* Text Block */}
               <div className="w-full md:w-2/3 p-8 md:p-12 flex flex-col justify-center">
                 <h3 className="font-bold text-[#0B2046] text-3xl font-serif mb-2">Late Sri Goluguri Bapi Raju Reddy</h3>
                 <p className="text-amber-600 text-sm uppercase tracking-widest font-bold mb-6">The Founder</p>
@@ -71,7 +95,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* 2. Correspondent (Photo Right) - Notice the "md:flex-row-reverse" */}
+            {/* 2. Correspondent (Photo Right) */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row-reverse hover:shadow-md transition">
               <div className="w-full md:w-1/3 aspect-square bg-blue-50 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-l border-gray-100">
                 <span className="text-8xl font-serif font-bold text-blue-200">T</span>
@@ -99,7 +123,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* 4. Key Architect (Photo Right) - Notice the "md:flex-row-reverse" */}
+            {/* 4. Key Architect (Photo Right) */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row-reverse hover:shadow-md transition">
               <div className="w-full md:w-1/3 aspect-square bg-purple-50 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-l border-gray-100">
                 <span className="text-8xl font-serif font-bold text-purple-200">A</span>
@@ -156,14 +180,40 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Leadership / Founder Message */}
+        {/* Leadership / Founder Message Slider */}
         <div className="text-center max-w-3xl mx-auto">
           <Award className="mx-auto text-amber-500 mb-6" size={48} />
           <h2 className="text-3xl font-bold text-[#0B2046] font-serif mb-6">Leadership Message</h2>
-          <blockquote className="text-xl text-gray-700 italic leading-relaxed mb-6">
-            &ldquo;Education is not merely about accumulating facts; it is about building character. At GBR, we don&apos;t just prepare students for exams; we prepare them for life. We are committed to maintaining a campus where tradition meets modern innovation.&rdquo;
-          </blockquote>
-          <p className="font-bold text-gray-900 uppercase tracking-widest text-sm">— Management Committee, GBR Institutions</p>
+          
+          <div className="relative overflow-hidden w-full h-[220px] md:h-[180px]">
+            <div 
+              className="flex transition-transform duration-700 ease-in-out h-full"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {leadershipMessages.map((msg, idx) => (
+                <div key={idx} className="w-full shrink-0 px-4 flex flex-col justify-center h-full">
+                  <blockquote className="text-xl text-gray-700 italic leading-relaxed mb-6">
+                    &ldquo;{msg.quote}&rdquo;
+                  </blockquote>
+                  <p className="font-bold text-gray-900 uppercase tracking-widest text-sm">— {msg.author}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Slider Indicators */}
+          <div className="flex justify-center gap-2 mt-4">
+            {leadershipMessages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  currentIndex === idx ? 'bg-amber-500 w-6' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
       </div>
