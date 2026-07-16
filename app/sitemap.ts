@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/about',
     '/ac-campus',
-    '/non-ac-campus',
+    '/standard-campus',
     '/admissions',
     '/academics',
     '/parents',
