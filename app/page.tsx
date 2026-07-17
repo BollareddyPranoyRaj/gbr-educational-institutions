@@ -33,7 +33,7 @@ export default function HomePage() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="https://res.cloudinary.com/your-cloud-name/video/upload/v12345/gbr-campus-bg.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dkoxrayf2/video/upload/v1784303212/GBR_HomePage_umgwxo.mp4" type="video/mp4" />
           </video>
           {/* Overlay to ensure readability */}
           <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px]"></div>
