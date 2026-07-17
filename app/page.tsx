@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { schoolData } from './lib/schoolData';
-import HeroVideo from './components/HeroVideo';
 
 const sectionLinks = [
   { href: "/about", title: "About GBR", description: "Learn about our school legacy and vision." },
@@ -23,18 +22,28 @@ export default function HomePage() {
   return (
     <main className="min-h-screen flex flex-col bg-background">
       {/* Hero Section */}
-      <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden w-full min-h-[85vh]">
-        {/* Placeholder for Campus Image/Video - Currently a soft, premium blue gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 z-0"></div>
+      <div className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
         
-        {/* Subtle grid texture for a modern feel without being dark */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e3a8a08_1px,transparent_1px),linear-gradient(to_bottom,#1e3a8a08_1px,transparent_1px)] bg-[size:32px_32px] z-0"></div>
+        {/* BACKGROUND VIDEO SECTION */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="https://res.cloudinary.com/your-cloud-name/video/upload/v12345/gbr-campus-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay to ensure readability */}
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px]"></div>
+        </div>
 
         <div className="relative z-20 text-center px-4 max-w-5xl mx-auto flex flex-col items-center mt-16">
-          <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6 tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-bold text-primary mb-6 tracking-tight drop-shadow-sm">
             Welcome to <span className="text-accent">GBR Schools</span>
           </h1>
-          <p className="text-xl md:text-2xl text-text-muted mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-xl md:text-2xl text-primary font-medium mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
             {schoolData.about.vision}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
@@ -51,10 +60,6 @@ export default function HomePage() {
       {/* Cards Section */}
       <div className="w-full bg-white py-24 border-t border-gray-100 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16">
-            <HeroVideo />
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Link href="/admissions" className="group p-8 bg-[var(--color-surface)] border border-gray-200 rounded-xl hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
               <h3 className="text-xl font-semibold text-primary mb-3 group-hover:text-accent transition-colors">Admissions</h3>
