@@ -32,17 +32,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text-main flex flex-col min-h-screen`}
       >
-        {/* Placed NoticeBanner above Navbar */}
-        <div className="fixed top-0 w-full z-[60]">
+        {/* 
+          Sticky header wrapper keeps everything at the top. 
+          flex-col ensures the banner naturally sits above the navbar. 
+        */}
+        <header className="sticky top-0 z-[60] flex flex-col w-full shadow-sm">
           <NoticeBanner />
-        </div>
-        {/* Adjusted Navbar to sit below the banner spacing if needed, but since banner can be closed, Next.js handles this best with a sticky header wrapper if you want dynamic spacing. For now, we wrap them safely. */}
-        <div className="mt-8"> 
           <Navbar />
-        </div>
-        <div className="flex-grow">
+        </header>
+
+        <main className="flex-grow">
           {children}
-        </div>
+        </main>
+        
         <Footer />
       </body>
     </html>
