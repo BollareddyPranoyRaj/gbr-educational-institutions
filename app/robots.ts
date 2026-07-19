@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://gbrschools.edu.in/sitemap.xml',
+    sitemap: 'https://gbr-schools.vercel.app/sitemap.xml',
   };
 }
