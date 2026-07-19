@@ -22,36 +22,36 @@ export default function AdmissionsPage() {
             <ul className="space-y-4 text-text-muted">
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>New admissions are subject to vacancies. No correspondence will be entertained as regards to admissions.</span>
+                <span>Admissions depend strictly on available vacancies, and all decisions are final.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>The management reserves the right to admit or retain a pupil in the school.</span>
+                <span>School management holds the final right to admit or retain any student.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>New pupils are admitted on payment of the admission fee. The admission fee is non – refundable, under any circumstances.</span>
+                <span>Admission is confirmed only upon payment of a strictly non-refundable admission fee.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>According to government regulation only candidates who complete five and half years as on 31st August of the year in which admission is sought, can be admitted to std. I.</span>
+                <span>For Standard I, students must be at least 5.5 years old by August 31st of the admission year.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>A candidate who joins fresh from any other school has to produce an official Birth Certificate such as the Municipal Certificate in support of the date of birth entered in the admission form.</span>
+                <span>New students must submit an official Municipal Birth Certificate to verify their age.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>Original Report Card/ Mark Sheet along with a photocopy.</span>
+                <span>Please submit the original previous report card along with one clear photocopy.</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-3 mt-1">♦</span>
-                <span>For out of state candidates, Transfer Certificate must be countersigned by the Education Inspector of that State.</span>
+                <span>Out-of-state Transfer Certificates must be countersigned by that state's Education Inspector.</span>
               </li>
             </ul>
           </div>
         </section>
-
+        
         {/* Fee Policy & School Fees Section */}
         <section className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="bg-primary px-6 py-4">
