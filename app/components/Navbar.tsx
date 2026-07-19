@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -36,9 +37,21 @@ export default function Navbar() {
     <nav className="w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+          
+          {/* BRANDING SECTION WITH LOGO */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-primary font-bold text-xl tracking-wider">
-              GBR <span className="text-accent">SCHOOLS</span>
+            <Link href="/" className="flex items-center gap-3">
+              <Image 
+                src="/gbr-trans-logo.png" 
+                alt="GBR Group Logo" 
+                width={40} 
+                height={40} 
+                className="object-contain"
+                priority
+              />
+              <span className="text-primary font-bold text-xl tracking-wider">
+                GBR <span className="text-accent">SCHOOLS</span>
+              </span>
             </Link>
           </div>
           
