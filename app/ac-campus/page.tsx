@@ -1,27 +1,87 @@
-// app/ac-campus/page.tsx
+// app/news/[id]/page.tsx
 
-export default function ACCampusPage() {
-  return (
-    <main className="min-h-screen bg-background pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary mb-4">A.C. Campus</h1>
-        <p className="text-text-muted max-w-2xl mx-auto">
-          Experience our world-class, fully air-conditioned campus designed for optimal learning and comfort.
-        </p>
-      </div>
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+// In a real application, you would fetch this data from an API or database
+const getNewsArticle = (id: string) => {
+  const articles = [
+    {
+      id: "1",
+      title: "GBR Students Shine in State Science Fair",
+      date: "July 12, 2026",
+      author: "Academic Dept.",
+      content: `Our high school students secured the top three positions in the annual State Science Exhibition with their innovative renewable energy models. The exhibition, which saw participation from over 50 schools across the district, was a testament to the rigorous practical training provided at our A.C. Campus labs.
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {/* These will be replaced with your Cloudinary images/videos later */}
-        <div className="bg-[var(--color-surface)] border border-gray-200 rounded-xl h-64 flex items-center justify-center shadow-sm">
-          <span className="text-text-muted">Campus Image 1</span>
+      The winning project, a cost-effective solar water purification system, was developed by a team of Class 9 students. They will now proceed to represent the district at the National Science Conclave in New Delhi next month. We congratulate the students and the science faculty for their outstanding dedication.`,
+      category: "Achievement",
+    },
+    {
+      id: "2",
+      title: "New Synthetic Basketball Court Inaugurated",
+      date: "June 28, 2026",
+      author: "Sports Dept.",
+      content: `Expanding our sports infrastructure, the A.C. Campus proudly inaugurates a state-of-the-art synthetic basketball court for our athletes. The inauguration ceremony was led by our Principal and featured a friendly exhibition match between the alumni and the current senior school team.
+      
+      This new facility is equipped with all-weather synthetic flooring and professional-grade lighting, ensuring our students can practice safely and effectively year-round.`,
+      category: "Infrastructure",
+    },
+    {
+      id: "3",
+      title: "Annual Cultural Fest 'Tarang' Announced",
+      date: "June 15, 2026",
+      author: "Cultural Committee",
+      content: `Get ready for a week of music, dance, and art. The much-awaited annual cultural festival, 'Tarang', is scheduled for the first week of September. This year's theme is "Heritage of India," and we encourage all students from Nursery to Class 10 to participate.
+      
+      Auditions for group dances, solo singing, and drama will begin in mid-August. Parents are warmly invited to attend the grand finale on September 5th.`,
+      category: "Events",
+    }
+  ];
+
+  return articles.find(article => article.id === id);
+};
+
+export default async function NewsArticlePage({ params }: { params: { id: string } }) {
+  const article = getNewsArticle(params.id);
+
+  if (!article) {
+    notFound();
+  }
+
+  return (
+    <main className="min-h-screen bg-background pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <Link href="/news" className="inline-flex items-center text-sm font-medium text-text-muted hover:text-primary transition-colors mb-8">
+        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        Back to News
+      </Link>
+
+      <article className="bg-[var(--color-surface)] border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <div className="h-64 sm:h-96 bg-gray-100 flex items-center justify-center border-b border-gray-200">
+          <span className="text-gray-400 font-medium">Article Image Placeholder</span>
         </div>
-        <div className="bg-[var(--color-surface)] border border-gray-200 rounded-xl h-64 flex items-center justify-center shadow-sm">
-          <span className="text-text-muted">Campus Image 2</span>
+        
+        <div className="p-8 md:p-12">
+          <div className="flex flex-wrap items-center gap-4 mb-6">
+            <span className="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-md">
+              {article.category}
+            </span>
+            <span className="text-sm text-text-muted font-medium">{article.date}</span>
+            <span className="text-sm text-text-muted font-medium border-l border-gray-300 pl-4">By {article.author}</span>
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-8 leading-tight">
+            {article.title}
+          </h1>
+
+          <div className="prose prose-blue max-w-none text-text-muted">
+            {article.content.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-6 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
-        <div className="bg-[var(--color-surface)] border border-gray-200 rounded-xl h-64 flex items-center justify-center shadow-sm">
-          <span className="text-text-muted">Campus Image 3</span>
-        </div>
-      </div>
+      </article>
     </main>
   );
 }
