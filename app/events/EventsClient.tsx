@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { CldImage } from "next-cloudinary";
 import styles from "./events.module.css";
 
-type SchoolEvent = {
+// Export the type so the Parent page.tsx can import and use it
+export type SchoolEvent = {
   id: string;
   title: string;
   description: string;
@@ -15,94 +16,7 @@ type SchoolEvent = {
 
 type ModalState = {
   eventIndex: number;
-  cardIndex: number;
-  rect: DOMRect;
-  status: "opening" | "open" | "closing";
 };
-
-const eventsData: SchoolEvent[] = [
-  {
-    id: "parents-activity",
-    title: "Parents Activity Day",
-    description: "Engaging workshops and collaborative activities bringing our school community and parents together.",
-    images: ["school-website/events/parentsactivity/parentsactivity-01", "school-website/events/parentsactivity/parentsactivity-02"],
-    duration: 34,
-  },
-  {
-    id: "40-years-celebration",
-    title: "40 Years Celebration",
-    description: "Honoring four decades of educational excellence and historic milestones.",
-    images: ["school-website/events/40yearcelb/40yearcelb-01", "school-website/events/40yearcelb/40yearcelb-02"],
-    duration: 38,
-    reverse: true,
-  },
-  {
-    id: "christmas",
-    title: "Christmas Celebration",
-    description: "Spreading holiday cheer with festive carols, decorations, and seasonal performances.",
-    images: ["school-website/events/chirstmas/chirstmas-01", "school-website/events/chirstmas/chirstmas-02"],
-    duration: 36,
-  },
-  {
-    id: "dussehra",
-    title: "Dussehra Festival",
-    description: "Celebrating traditional cultural heritages and seasonal festive rituals.",
-    images: ["school-website/events/dusheera/dusheera-01", "school-website/events/dusheera/dusheera-02"],
-    duration: 32,
-  },
-  {
-    id: "field-trip",
-    title: "Educational Field Trip",
-    description: "Experiential learning journeys outside the classroom boundaries.",
-    images: ["school-website/events/fieldtrip/fieldtrip-01"],
-    duration: 30,
-    reverse: true,
-  },
-  {
-    id: "fruit-day",
-    title: "Fruit Day Celebration",
-    description: "Promoting healthy habits and learning about nature's vibrant nutrition.",
-    images: ["school-website/events/fruitday/fruitday-01"],
-    duration: 30,
-  },
-  {
-    id: "graduation-day",
-    title: "Graduation Day",
-    description: "Celebrating the hard work, milestones, and bright futures of our graduating students.",
-    images: ["school-website/events/graduationday/graduationday-01"],
-    duration: 32,
-  },
-  {
-    id: "pongal",
-    title: "Pongal Festival",
-    description: "Embracing seasonal harvest traditions with joy, community, and gratitude.",
-    images: ["school-website/events/pongal/pongal-01"],
-    duration: 30,
-    reverse: true,
-  },
-  {
-    id: "rainbow-kids",
-    title: "Rainbow Kids Activities",
-    description: "Fun, colorful, and creative developmental activities for our early learners.",
-    images: ["school-website/events/rainbowkids/rainbowkids-01"],
-    duration: 30,
-  },
-  {
-    id: "science-odyssey",
-    title: "Science Odyssey Exhibit",
-    description: "Showcasing student curiosity, innovative projects, and scientific discoveries.",
-    images: ["school-website/events/science%20odyssey/science%20odyssey-01"],
-    duration: 34,
-  },
-  {
-    id: "sports-day",
-    title: "Annual Sports Meet",
-    description: "Celebrating teamwork, athletic dedication, and competitive school spirit.",
-    images: ["school-website/events/sportsday/sportsday-01"],
-    duration: 38,
-    reverse: true,
-  },
-];
 
 const cloudinaryConfig = {
   cloud: {
@@ -110,51 +24,39 @@ const cloudinaryConfig = {
   },
 };
 
-export default function EventsClient() {
+export default function EventsClient({ eventsData }: { eventsData: SchoolEvent[] }) {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [hoveredEventIndex, setHoveredEventIndex] = useState<number | null>(null);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [modalState, setModalState] = useState<ModalState | null>(null);
 
-  const activeModalEvent = modalState ? eventsData[modalState.eventIndex] : null;
+  const sortedEvents = useMemo(
+    () =>
+      eventsData
+        .map((event) => ({ ...event, images: Array.from(new Set(event.images)) }))
+        .sort((a, b) => b.images.length - a.images.length),
+    [eventsData],
+  );
+
+  const activeModalEvent = modalState ? sortedEvents[modalState.eventIndex] : null;
 
   const handleClose = useCallback(() => {
-    if (!modalState || modalState.status === "closing") {
-      return;
-    }
-
     setHoveredEventIndex(null);
     setHoveredCardIndex(null);
-    setModalState((current) => (current ? { ...current, status: "closing" } : current));
-    window.setTimeout(() => {
-      setModalState(null);
-    }, 400);
-  }, [modalState]);
+    setModalState(null);
+  }, []);
 
-  const openModal = useCallback(
-    (eventIndex: number, cardIndex: number, cardElement: HTMLElement) => {
-      const rect = cardElement.getBoundingClientRect();
-      setActiveCardIndex(cardIndex);
-      setModalState({
-        eventIndex,
-        cardIndex,
-        rect,
-        status: "opening",
-      });
-
-      window.requestAnimationFrame(() => {
-        setModalState((current) => (current ? { ...current, status: "open" } : current));
-      });
-    },
-    [],
-  );
+  const openModal = useCallback((eventIndex: number, cardIndex: number) => {
+    setActiveCardIndex(cardIndex);
+    setModalState({ eventIndex });
+  }, []);
 
   useEffect(() => {
     if (!modalState) {
       return;
     }
 
-    const cardCount = eventsData[modalState.eventIndex].images.length;
+    const cardCount = sortedEvents[modalState.eventIndex]?.images.length ?? 0;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -181,7 +83,7 @@ export default function EventsClient() {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [handleClose, modalState]);
+  }, [handleClose, modalState, sortedEvents]);
 
   function goToNextCard() {
     if (!activeModalEvent) {
@@ -211,9 +113,7 @@ export default function EventsClient() {
         </div>
 
         <div className="mt-12 space-y-16">
-          {eventsData.map((event, eventIndex) => {
-            const loopCards = [...event.images, ...event.images];
-
+          {sortedEvents.map((event, eventIndex) => {
             return (
               <section
                 key={event.id}
@@ -238,22 +138,20 @@ export default function EventsClient() {
                   <p className="max-w-3xl text-sm leading-7 text-text-muted sm:text-base">{event.description}</p>
                 </div>
 
-                <div className={styles.trackWindow}>
+                <div className="w-full relative">
                   <div
-                    className={styles.marquee}
-                    style={{
-                      ["--scroll-duration" as string]: `${event.duration}s`,
-                      animationDirection: event.reverse ? "reverse" : "normal",
-                    }}
+                    className="flex flex-row overflow-x-auto snap-x snap-mandatory gap-6 scroll-smooth pb-4 scrollbar-hide"
                     aria-label={`${event.title} image carousel`}
                   >
-                    {loopCards.map((src, index) => {
-                      const realIndex = index % event.images.length;
+                    {event.images.map((src, index) => {
+                      const realIndex = index;
                       const isActiveHover = hoveredEventIndex === eventIndex && hoveredCardIndex === realIndex;
                       return (
                         <article
                           key={`${event.id}-${src}-${index}`}
-                          className={styles.card}
+                          className={
+                            "w-[320px] md:w-[360px] h-[240px] flex-shrink-0 snap-start rounded-2xl overflow-hidden cursor-pointer transition-transform hover:scale-[1.02]"
+                          }
                           data-active={isActiveHover ? "true" : "false"}
                           onPointerEnter={(pointerEvent) => {
                             if (pointerEvent.pointerType !== "mouse") {
@@ -269,16 +167,16 @@ export default function EventsClient() {
                               setHoveredCardIndex(null);
                             }
                           }}
-                          onClick={(clickEvent) => openModal(eventIndex, realIndex, clickEvent.currentTarget)}
+                          onClick={() => openModal(eventIndex, realIndex)}
                         >
-                          <div className={styles.imageFrame}>
+                          <div className="w-full h-full relative">
                             <CldImage
                               src={src}
                               config={cloudinaryConfig}
                               alt={event.title}
                               fill
                               sizes="(max-width: 640px) 20rem, (max-width: 1024px) 24rem, 20rem"
-                              className={styles.thumbnail}
+                              className="object-cover"
                               loading="lazy"
                             />
                           </div>
@@ -295,70 +193,43 @@ export default function EventsClient() {
 
       {modalState && activeModalEvent && (
         <div
-          className={`${styles.modalShell} ${modalState.status === "closing" ? styles.modalShellClosing : ""}`}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
           role="presentation"
           onClick={handleClose}
         >
-          <div className={`${styles.modalBackdrop} ${modalState.status === "opening" || modalState.status === "open" ? styles.modalBackdropOpen : ""}`} />
-
           <div
-            className={`${styles.modalStage} ${modalState.status === "opening" ? styles.modalStageOpening : ""} ${modalState.status === "open" ? styles.modalStageOpen : ""} ${modalState.status === "closing" ? styles.modalStageClosing : ""}`}
+            className="w-full"
             role="dialog"
             aria-modal="true"
             aria-label={`${activeModalEvent.title} image viewer`}
             onClick={(event) => event.stopPropagation()}
-            style={{
-              top: modalState.rect.top,
-              left: modalState.rect.left,
-              width: modalState.rect.width,
-              height: modalState.rect.height,
-            }}
           >
-            <button type="button" className={styles.closeButton} onClick={handleClose} aria-label="Close modal">
-              <span>×</span>
-            </button>
+            <div className="relative w-full max-w-5xl h-[85vh] flex items-center justify-center mx-auto">
+              <CldImage
+                src={activeModalEvent.images[activeCardIndex]}
+                config={cloudinaryConfig}
+                alt={activeModalEvent.title}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
 
-            <button type="button" className={`${styles.navButton} ${styles.navButtonLeft}`} onClick={goToPreviousCard} aria-label="Previous image">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
+              <button type="button" className="absolute top-4 right-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/35 text-3xl leading-none text-white backdrop-blur transition hover:bg-black/55" onClick={handleClose} aria-label="Close modal">
+                <span>×</span>
+              </button>
 
-            <button type="button" className={`${styles.navButton} ${styles.navButtonRight}`} onClick={goToNextCard} aria-label="Next image">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 6l6 6-6 6" />
-              </svg>
-            </button>
+              <button type="button" className="absolute left-4 top-1/2 z-10 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/35 text-white backdrop-blur transition hover:bg-black/55" onClick={goToPreviousCard} aria-label="Previous image">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
 
-            <div
-              className={styles.modalContent}
-            >
-                <div className={styles.modalImageWrap}>
-                  {activeModalEvent.images.map((src, index) => {
-                    if (index !== activeCardIndex) {
-                      return null;
-                    }
-
-                    return (
-                      <div key={`${activeModalEvent.id}-${src}`} className={styles.modalImageFrame}>
-                      <CldImage
-                          src={src}
-                          config={cloudinaryConfig}
-                          alt={activeModalEvent.title}
-                          fill
-                          sizes="100vw"
-                          className={styles.modalImage}
-                          priority
-                      />
-                    </div>
-                    );
-                  })}
-              </div>
-
-              <div className={styles.modalCaption}>
-                <p className={styles.modalEyebrow}>{activeModalEvent.title}</p>
-                <p className="mt-3 text-sm leading-7 text-text-muted sm:text-base">{activeModalEvent.description}</p>
-              </div>
+              <button type="button" className="absolute right-4 top-1/2 z-10 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/35 text-white backdrop-blur transition hover:bg-black/55" onClick={goToNextCard} aria-label="Next image">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
