@@ -1,7 +1,7 @@
 // app/page.tsx
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { schoolData } from './lib/schoolData';
 
@@ -19,9 +19,57 @@ const menuSections = [
   { href: "/careers", title: "Careers", description: "Find open teaching and administrative roles at GBR Schools." },
 ];
 
+const VIDEO_POSTER_URL = "https://res.cloudinary.com/dkoxrayf2/video/upload/so_2,f_auto,q_auto/v1784303212/GBR_HomePage_umgwxo.jpg";
+const VIDEO_SRC_URL = "https://res.cloudinary.com/dkoxrayf2/video/upload/f_auto,q_auto/v1784303212/GBR_HomePage_umgwxo.mp4";
+
 function HeroVideo() {
+  const [playing, setPlaying] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [muted, setMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!playing || !videoRef.current) return;
+    const video = videoRef.current;
+
+    if (paused) {
+      video.pause();
+      return;
+    }
+
+    const tryPlay = () => {
+      video.play().catch(() => {});
+    };
+
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("canplay", tryPlay, { once: true });
+      return () => video.removeEventListener("canplay", tryPlay);
+    }
+  }, [playing, paused]);
+
+  const handleStartPlay = () => {
+    setPlaying(true);
+    setPaused(false);
+  };
+
+  const handleTogglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().catch(() => {});
+        setPaused(false);
+      } else {
+        videoRef.current.pause();
+        setPaused(true);
+      }
+    }
+  };
+
+  const handleEnded = () => {
+    setPlaying(false);
+    setPaused(false);
+  };
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -30,22 +78,59 @@ function HeroVideo() {
     }
   };
 
+  if (!playing) {
+    return (
+      <div className="relative w-full h-full overflow-hidden">
+        <img
+          src={VIDEO_POSTER_URL}
+          alt="GBR Schools hero preview"
+          className="absolute inset-0 h-full w-full object-cover object-[20%_center]"
+        />
+        <button
+          onClick={handleStartPlay}
+          aria-label="Play video"
+          className="absolute inset-0 z-10 flex items-center justify-center"
+        >
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/60 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 ml-1">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full h-full overflow-hidden">
       <video
         ref={videoRef}
-        autoPlay
-        loop
-        muted
+        muted={muted}
         playsInline
-        className="absolute inset-0 h-full w-full object-cover object-[20%_center]"
+        onEnded={handleEnded}
+        onClick={handleTogglePlay}
+        className="absolute inset-0 h-full w-full object-cover object-[20%_center] cursor-pointer"
       >
-        <source src="https://res.cloudinary.com/dkoxrayf2/video/upload/f_auto,q_auto/v1784303212/GBR_HomePage_umgwxo.mp4" type="video/mp4" />
+        <source src={VIDEO_SRC_URL} type="video/mp4" />
       </video>
+
+      {paused && (
+        <button
+          onClick={handleTogglePlay}
+          aria-label="Resume video"
+          className="absolute inset-0 z-10 flex items-center justify-center"
+        >
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/60 hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 ml-1">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </span>
+        </button>
+      )}
 
       {/* Mute toggle */}
       <button
-        onClick={toggleMute}
+        onClick={(e) => { e.stopPropagation(); toggleMute(); }}
         aria-label={muted ? 'Unmute video' : 'Mute video'}
         className="absolute bottom-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors"
       >
