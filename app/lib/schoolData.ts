@@ -14,7 +14,7 @@ export const schoolData = {
   timings: {
     nursery: "9:00 AM to 12:00 PM",
     prePrimaryAndPrimary: "9:00 AM to 4:10 PM",
-    highSchool: "8:00 AM to 5:30 PM",
+    highSchool: "8:00 AM to 5:00 PM",
     officeHours: "8:30 AM to 5:00 PM (Monday to Saturday)",
     meetingDean: "10:30 AM to 12:00 PM (By prior appointment only)",
     meetingTeacher: "9:00 AM to 12:00 PM (2nd Saturday of every month)"

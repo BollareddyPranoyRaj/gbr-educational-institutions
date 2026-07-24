@@ -40,7 +40,7 @@ export default function Navbar() {
                 priority
               />
               <span className="text-primary font-bold text-lg tracking-wider">
-                GBR <span className="text-accent">SCHOOLS</span>
+                GBR <span className="text-accent">GROUP OF SCHOOLS</span>
               </span>
             </Link>
           </div>

@@ -109,7 +109,7 @@ export default function AcademicsAndLifePage() {
               <div className="space-y-3">
                 <TimingCard label="Nursery (EMS)" time="9:00 AM – 12:00 PM" />
                 <TimingCard label="Pre-Primary & Primary (EMS & AC)" time="9:00 AM – 4:10 PM" />
-                <TimingCard label="High School (EMS & AC)" time="8:00 AM – 5:30 PM" />
+                <TimingCard label="High School (EMS & AC)" time="8:00 AM – 5:00 PM" />
               </div>
             </div>
             <div>

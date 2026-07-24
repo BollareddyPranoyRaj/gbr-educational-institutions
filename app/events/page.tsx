@@ -69,7 +69,7 @@ const baseEvents = [
   },
   {
     id: "fruit-day",
-    title: "Fruit Day Celebration",
+    title: "Fruit Fiesta",
     description: "Promoting healthy habits and learning about nature's vibrant nutrition.",
     duration: 30,
     folder: "school-website/events/fruitday",
@@ -110,7 +110,7 @@ const baseEvents = [
   },
   {
     id: "sports-day",
-    title: "Annual Sports Meet",
+    title: "Intra School Competition",
     description: "Celebrating teamwork, athletic dedication, and competitive school spirit.",
     duration: 38,
     reverse: true,

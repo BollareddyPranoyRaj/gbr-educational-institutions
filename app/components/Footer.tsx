@@ -78,14 +78,43 @@ export default function Footer() {
                 </a>
               </li>
 
-              <li className="flex items-center gap-3">
-                <svg className="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.864-1.051l-3.219-.536a2.25 2.25 0 00-2.15.586l-1.92 1.92A14.92 14.92 0 016.75 4.92l1.92-1.92c.42-.42.64-1.004.586-2.15l-.536-3.219C8.647 3.351 8.197 3 7.681 3H6.25A2.25 2.25 0 004 5.25z" />
-                </svg>
-                <a href="tel:+919295099992" className="text-sm hover:text-white transition-colors tabular-nums" aria-label="Call GBR Schools">
-                  +91 92950 99992
-                </a>
-              </li>
+              <li className="flex items-start gap-4">
+  {/* Phone Icon */}
+  <svg className="w-5 h-5 text-[#d4af37] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.864-1.051l-3.219-.536a2.25 2.25 0 00-2.15.586l-1.92 1.92A14.92 14.92 0 016.75 4.92l1.92-1.92c.42-.42.64-1.004.586-2.15l-.536-3.219C8.647 3.351 8.197 3 7.681 3H6.25A2.25 2.25 0 004 5.25z" />
+  </svg>
+  
+  {/* Stacked Phone Numbers */}
+  <div className="flex flex-col space-y-2.5">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+      <span className="text-xs text-gray-500 w-24 uppercase tracking-wider font-semibold">Pre-Primary:</span>
+      <a href="tel:+917893507966" className="text-sm hover:text-white transition-colors tabular-nums" aria-label="Call Pre-Primary">
+        +91 78935 07966
+      </a>
+    </div>
+    
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+      <span className="text-xs text-gray-500 w-24 uppercase tracking-wider font-semibold">Primary:</span>
+      <a href="tel:+919912340849" className="text-sm hover:text-white transition-colors tabular-nums" aria-label="Call Primary">
+        +91 99123 40849
+      </a>
+    </div>
+    
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+      <span className="text-xs text-gray-500 w-24 uppercase tracking-wider font-semibold">High School:</span>
+      <a href="tel:+919494700666" className="text-sm hover:text-white transition-colors tabular-nums" aria-label="Call High School">
+        +91 94947 00666
+      </a>
+    </div>
+    
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+      <span className="text-xs text-gray-500 w-24 uppercase tracking-wider font-semibold">A.C. Campus:</span>
+      <a href="tel:+919912340922" className="text-sm hover:text-white transition-colors tabular-nums" aria-label="Call A.C. Campus">
+        +91 99123 40922
+      </a>
+    </div>
+  </div>
+</li>
 
               <li className="flex items-center gap-3">
                 <svg className="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
